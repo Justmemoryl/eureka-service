@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: eureka-service
+
+server:
+  port: 8002
+
+eureka:
+  client:
+    # 表示是否将自己注册到Eureka Server，默认为true
+    register-with-eureka: false
+    # 表示是否从Eureka Server获取注册信息，默认为true
+    fetch-registry: false
+    # 设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址，多个地址可使用，分割
+    serviceUrl:
+      defaultZone: http://118.24.20.210:8001/eureka/
+      # 双节点注册时，使用此配置，指向第二节点的地址
+      # instance:
+      # hostname: peer1
+      # serviceUrl:
+      # defaultZone: http://peer2:8001/eureka/
+    # 第二节点配置应为port:8001; hostname:peer2; defaultZone:http://peer1:8000/eureka/;
+  instance:
+    hostname: node-2
+  # 关闭eureka自我保护模式
+  server:
+    enable-self-preservation: false
